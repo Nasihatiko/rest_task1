@@ -8,6 +8,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Post(models.Model):
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='posts')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
@@ -18,6 +19,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
 class PostImage(models.Model):
-    image = models.ImageField(uploud_to='posts', blank=True, null=True)
+    image = models.ImageField(upload_to='posts', blank=True, null=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
