@@ -6,7 +6,7 @@ from .models import Comment
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        exclude = ('product', )
+        exclude = ('post', )
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
