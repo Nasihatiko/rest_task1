@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from comments.serializers import *
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -20,6 +21,12 @@ class PostSerializer(serializers.ModelSerializer):
         representation['images'] = PostImageSerializer(instance.images.all(),
                                                   many=True,
                                                   context=self.context).data
+        action = self.context.get('action')
+        if action == 'retrieve':
+            # детализация
+            representation['comments'] = CommentSerializer(instance.comments.all(), many=True).data
+        else:
+            representation['comments'] = instance.comments.all().count()
         return representation
 
 
