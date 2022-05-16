@@ -28,10 +28,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    email = serializers.Emailfield()
+    email = serializers.EmailField()
     password = serializers.CharField(
         label='Password',
-        stle={'input_type': 'password'},
+        style={'input_type': 'password'},
         trim_whitespace=False
     )
 
@@ -50,3 +50,4 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(message, code='authorization')
         attrs['user'] = user
         return attrs
+

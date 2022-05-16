@@ -23,6 +23,7 @@ from post.views import CategoryListView, PostsViewSet, PostImageView
 
 router = DefaultRouter()
 router.register('posts', PostsViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
