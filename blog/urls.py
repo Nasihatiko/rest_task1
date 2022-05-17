@@ -19,16 +19,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 
-from post.views import CategoryListView, PostsViewSet, PostImageView
+from post.views import  PostsViewSet, PostImageViewSet, CategoryViewSet
+from comments.views import CommentViewSet
 
 router = DefaultRouter()
 router.register('posts', PostsViewSet)
+router.register('comments', CommentViewSet)
+router.register('posts', PostImageViewSet)
+router.register('categories', CategoryViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('v1/api/categories/', CategoryListView.as_view()),
-    path('v1/api/add-image/', PostImageView.as_view()),
     path('v1/api/account', include('account.urls')),
     path('v1/api/', include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
