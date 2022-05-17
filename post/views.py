@@ -70,7 +70,7 @@ class MyPaginationClass(PageNumberPagination):
         return super().get_paginated_response(data)
 
 
-class CategoryListView(generics.ListAPIView):
+class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [AllowAny, ]
@@ -118,7 +118,7 @@ class PostsViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class PostImageView(generics.ListCreateAPIView):
+class PostImageViewSet(viewsets.ModelViewSet):
     queryset = PostImage.objects.all()
     serializer_class = PostImageSerializer
 
